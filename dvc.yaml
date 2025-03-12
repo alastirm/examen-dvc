@@ -1,9 +1,9 @@
 stages:
   split_data:
     cmd: python src/data/split_data.py
-    # deps:
-    # - data/raw_data/raw.csv
-    # - src/data/split_data.py
+    deps:
+    - data/raw_data/raw.csv
+    - src/data/split_data.py
     outs:
     - data/processed_data/split/
   scale_data:
