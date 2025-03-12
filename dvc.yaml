@@ -5,24 +5,42 @@ stages:
     - data/raw_data/raw.csv
     - src/data/split_data.py
     outs:
-    - data/processed_data/split/
+    - data/processed_data/split/X_test.csv
+    - data/processed_data/split/X_train.csv
+    - data/processed_data/split/y_test.csv
+    - data/processed_data/split/y_train.csv
   scale_data:
     cmd: python src/data/scale_data.py
-    # deps:
-    # - data/processed_data/split/
-    # - src/data/scale_data.py
+    deps:
+    - data/processed_data/split/X_test.csv
+    - data/processed_data/split/X_train.csv
+    - data/processed_data/split/y_test.csv
+    - data/processed_data/split/y_train.csv
+    - src/data/scale_data.py
     outs:
-    - data/processed_data/scaled/
+    - data/processed_data/scaled/X_train_scaled.csv
+    - data/processed_data/scaled/X_test_scaled.csv
   grid_search:
     cmd: python src/models/grid_search.py
+    deps:
+    - data/processed_data/scaled/X_train_scaled.csv
+    - data/processed_data/split/y_train.csv
     outs:
     - models/gridsearch/
   train_best_model:
     cmd: python src/models/train.py
+    deps:
+    - models/gridsearch/
+    - data/processed_data/scaled/X_train_scaled.csv
+    - data/processed_data/split/y_train.csv
     outs:
     - models/trained/
   evaluate_model:
     cmd: python src/models/evaluate.py
+    deps:
+    - models/trained/
+    - data/processed_data/scaled/X_test_scaled.csv
+    - data/processed_data/split/y_test.csv
     outs:
     - metrics/
   
