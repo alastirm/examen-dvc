@@ -41,8 +41,9 @@ stages:
     - models/trained/
     - data/processed_data/scaled/X_test_scaled.csv
     - data/processed_data/split/y_test.csv
+    metrics:
+    - metrics/metrics.json
     outs:
-    - metrics/
     - data/predictions
   
 
