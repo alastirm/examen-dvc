@@ -1,0 +1,29 @@
+stages:
+  split_data:
+    cmd: python src/data/split_data.py
+    # deps:
+    # - data/raw_data/raw.csv
+    # - src/data/split_data.py
+    outs:
+    - data/processed_data/split/
+  scale_data:
+    cmd: python src/data/scale_data.py
+    # deps:
+    # - data/processed_data/split/
+    # - src/data/scale_data.py
+    outs:
+    - data/processed_data/scaled/
+  grid_search:
+    cmd: python src/models/grid_search.py
+    outs:
+    - models/gridsearch/
+  train_best_model:
+    cmd: python src/models/train.py
+    outs:
+    - models/trained/
+  evaluate_model:
+    cmd: python src/models/evaluate.py
+    outs:
+    - metrics/
+  
+

@@ -19,8 +19,10 @@ def main(input_filepath, output_filepath):
     logger = logging.getLogger(__name__)
     logger.info('scaling training data set from processing data')
 
-    input_filepath = click.prompt('Enter the file path for the input training data (X_test, X_train)', type=click.Path(exists=True))
-    output_filepath = click.prompt('Enter the file path for the output scaled data (e.g., data/processed_data', type=click.Path())
+    #input_filepath = click.prompt('Enter the file path for the input training data (X_test, X_train)', type=click.Path(exists=True))
+    input_filepath = "data/processed_data/split"
+    #output_filepath = click.prompt('Enter the file path for the output scaled data (e.g., data/processed_data', type=click.Path())
+    output_filepath = "data/processed_data/scaled"
     scale_data(input_filepath, output_filepath)
 
 def scale_data(input_filepath, output_filepath):

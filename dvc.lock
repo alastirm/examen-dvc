@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  scale_data:
+    cmd: python src/data/scale_data.py
+    outs:
+    - path: data/processed_data/scaled/
+      hash: md5
+      md5: d01a1533bfa252a70c7f7aa9df1e7dd0.dir
+      size: 279942
+      nfiles: 2
+  split_data:
+    cmd: python src/data/split_data.py
+    outs:
+    - path: data/processed_data/split/
+      hash: md5
+      md5: 7fe15e0de6694ebc523b0b36ccf4c3b6.dir
+      size: 334487
+      nfiles: 4
+  grid_search:
+    cmd: python src/models/grid_search.py
+    outs:
+    - path: models/gridsearch/
+      hash: md5
+      md5: 531a74135f837287bd5bd5dd97d407a8.dir
+      size: 3459
+      nfiles: 1
+  train_best_model:
+    cmd: python src/models/train.py
+    outs:
+    - path: models/trained/
+      hash: md5
+      md5: e07d476fed7acda5602c38ca23d2346e.dir
+      size: 814
+      nfiles: 1
+  evaluate_model:
+    cmd: python src/models/evaluate.py
+    outs:
+    - path: metrics/
+      hash: md5
+      md5: a82d978a6da20cb7682caef35b104ce8.dir
+      size: 37
+      nfiles: 1
