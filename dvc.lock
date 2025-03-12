@@ -29,9 +29,9 @@ stages:
     outs:
     - path: models/trained/
       hash: md5
-      md5: e07d476fed7acda5602c38ca23d2346e.dir
-      size: 814
-      nfiles: 1
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
   evaluate_model:
     cmd: python src/models/evaluate.py
     outs:
