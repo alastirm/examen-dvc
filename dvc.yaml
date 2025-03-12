@@ -43,5 +43,6 @@ stages:
     - data/processed_data/split/y_test.csv
     outs:
     - metrics/
+    - data/predictions
   
 
